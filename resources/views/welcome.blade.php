@@ -24,11 +24,13 @@
           <select class="cur" id="from:select">
             <?php
             for ($row = 0; $row <= 30; $row++) {
-              echo '<option id="'.$phpArray3[$row]['currency'].'" value="'.$phpArray3[$row]['rate'].'">' . $phpArray3[$row]['currency'] . '</option>';
+              echo '<option id="' . $phpArray3[$row]['currency'] . '" value="' . $phpArray3[$row]['rate'] . '">' . $phpArray3[$row]['currency'] . '</option>';
             }
             ?>
           </select>
-          <input class="amount" id="from:input" type="text" maxlength="8" />
+          <form method="post" action="">
+            <input class="amount" id="from:input" type="text" maxlength="8" value="" oninput="magicFunc()" />
+          </form>
         </div>
         <div class="symb">&#8674;</div>
         <div class="to">
@@ -36,7 +38,7 @@
           <select class="cur" id="to:select">
             <?php
             for ($row = 0; $row <= 30; $row++) {
-              echo '<option id="'.$phpArray3[$row]['currency'].'" value="'.$phpArray3[$row]['rate'].'">' . $phpArray3[$row]['currency'] . '</option>';
+              echo '<option id="' . $phpArray3[$row]['currency'] . '" value="' . $phpArray3[$row]['rate'] . '">' . $phpArray3[$row]['currency'] . '</option>';
             }
             ?>
           </select>
@@ -59,18 +61,25 @@
             <th>Rate</th>
           </tr>
         </thead>
-        <tbody>         
-            <?php
-            for ($row = 0; $row <= 30; $row++) {
-              echo '<tr><td>' . $phpArray3[$row]['currency'] . '</td>';
-              echo '<td>' . $phpArray3[$row]['rate'] . '</td></tr>';
-            }
-            ?>
+        <tbody>
+          <?php
+          for ($row = 0; $row <= 30; $row++) {
+            echo '<tr><td>' . $phpArray3[$row]['currency'] . '</td>';
+            echo '<td>' . $phpArray3[$row]['rate'] . '</td></tr>';
+          }
+          ?>
         </tbody>
       </table>
     </div>
   </div>
-
+  <script>
+    function magicFunc() {
+      var select = document.getElementById('from:select');
+      var output = select.options[select.selectedIndex].value;
+      var x = document.getElementById("from:input").value;
+      document.getElementById("to:input").value = x * output;
+    }
+  </script>
 </body>
 
 </html>
