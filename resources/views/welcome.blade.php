@@ -22,8 +22,11 @@
       <div class="body">
         <div class="from">
           <select class="cur" id="from:select">
-            <option>
-            </option>
+            <?php
+            for ($row = 0; $row <= 30; $row++) {
+              echo '<option id="'.$phpArray3[$row]['currency'].'" value="'.$phpArray3[$row]['rate'].'">' . $phpArray3[$row]['currency'] . '</option>';
+            }
+            ?>
           </select>
           <input class="amount" id="from:input" type="text" maxlength="8" />
         </div>
@@ -31,8 +34,11 @@
         <div class="to">
           <input class="amount" id="to:input" type="text" maxlength="8" />
           <select class="cur" id="to:select">
-            <option>
-            </option>
+            <?php
+            for ($row = 0; $row <= 30; $row++) {
+              echo '<option id="'.$phpArray3[$row]['currency'].'" value="'.$phpArray3[$row]['rate'].'">' . $phpArray3[$row]['currency'] . '</option>';
+            }
+            ?>
           </select>
         </div>
       </div>
@@ -53,11 +59,13 @@
             <th>Rate</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
+        <tbody>         
+            <?php
+            for ($row = 0; $row <= 30; $row++) {
+              echo '<tr><td>' . $phpArray3[$row]['currency'] . '</td>';
+              echo '<td>' . $phpArray3[$row]['rate'] . '</td></tr>';
+            }
+            ?>
         </tbody>
       </table>
     </div>
